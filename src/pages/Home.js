@@ -35,15 +35,17 @@ function Home() {
     };
 
     return (
-        <div className="mainContainer">
-            <h1>Home</h1>
-            {username && <p>Welcome, {username}</p>}
-            <div className="buttons">
-                <button onClick={clickLogin}>
-                    {currentUser ? "Log Out" : "Login"}
-                </button>
-            </div>
-        </div>
+        <>
+            {username && <div className="mainContainer">
+                <h1>Home</h1>
+                <p>Welcome, {username}</p>
+                <div className="buttons">
+                    <button onClick={clickLogin}>
+                        {currentUser ? "Log Out" : "Login"}
+                    </button>
+                </div>
+            </div>}
+        </>
     );
 }
 
