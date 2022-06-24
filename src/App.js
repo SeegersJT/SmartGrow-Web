@@ -1,11 +1,23 @@
-import './App.css';
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import { AuthProvider } from "./services/AuthProvider";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
 
 function App() {
-  return (
-    <div className="App">
-      <h1>DAWID EN HANNO IS AWESOME</h1>
-    </div>
-  );
+    return (
+        <AuthProvider>
+            <div className="app">
+                <BrowserRouter>
+                    <Routes>
+                        <Route exact path="/" element={<Home />} />
+                        <Route exact path="/login" element={<Login />} />
+                    </Routes>
+                </BrowserRouter>
+            </div>
+        </AuthProvider>
+    );
 }
 
 export default App;
