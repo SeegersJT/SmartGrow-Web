@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 import { auth } from "../services/Firebase";
 
-import "../css/Login.css";
+import "../styles/Login.scss";
 
 const Login = () => {
     const [email, setEmail] = useState("");

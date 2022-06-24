@@ -7,7 +7,7 @@ import { ref, onValue } from "firebase/database";
 import { auth, db } from "../services/Firebase";
 import { AuthContext } from "../services/AuthProvider";
 
-import "../css/Home.css";
+import "../styles/Home.scss";
 
 function Home() {
     const { currentUser } = useContext(AuthContext);
@@ -37,7 +37,7 @@ function Home() {
     return (
         <div className="mainContainer">
             <h1>Home</h1>
-            {currentUser && <p>Welcome, {username}</p>}
+            {username && <p>Welcome, {username}</p>}
             <div className="buttons">
                 <button onClick={clickLogin}>
                     {currentUser ? "Log Out" : "Login"}
