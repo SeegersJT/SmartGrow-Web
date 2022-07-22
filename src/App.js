@@ -8,7 +8,7 @@ import { UserAuthContextProvider } from "./context/UserAuthContext";
 
 function App() {
     return (
-        <Container style={{ width: "400px" }}>
+        <Container style={{ width: "1000px" }}>
             <Row>
                 <Col>
                     <UserAuthContextProvider>
