@@ -27,18 +27,19 @@ ChartJS.register(
 );
 
 const Home = () => {
-    const [device, setDevice] = useState([]);
+    const [dawid, setDawid] = useState([]);
+    const [hanno, setHanno] = useState([]);
     const { user, logOut } = useUserAuth();
 
     //read device data based on uid
     useEffect(() => {
         if(user){
-            onValue(ref(database, "/devices/" + user.uid + "/readings"), snapshot => {
+            onValue(ref(database, "/devices/"), snapshot => {
                 const data = snapshot.val();
                 if(data !== null) {
-                    setDevice(Object.values(data));
+                    setDawid(Object.values(data.LDlrNOnaLFcnBeGEq9zdGXTBMQj2.readings));
+                    setHanno(Object.values(data.uFBi6L0Kp0XgBLH72ewIlkOWqGG3.readings));
                 }
-                console.log(data)
             });
         }
     }, [user]);
@@ -66,17 +67,17 @@ const Home = () => {
     };
 
     const data = {
-        labels: device.map((x) => x.timestamp),
+        labels: [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,],
         datasets: [
             {
-                label: "Temperature",
-                data: device.map((x) => x.temperature),
+                label: "Hanno - ESP",
+                data: hanno.map((x) => x.heatindex),
                 borderColor: "rgb(255, 99, 132)",
                 backgroundColor: "rgba(255, 99, 132, 0.5)"
             },
             {
-                label: "Real Feel",
-                data: device.map((x) => x.heatindex),
+                label: "Dawid - ESP",
+                data: dawid.map((x) => x.heatindex),
                 borderColor: "rgb(53, 162, 235)",
                 backgroundColor: "rgba(53, 162, 235, 0.5)"
             }
@@ -85,17 +86,13 @@ const Home = () => {
 
     return (
         <>
+            <h1>Welcome {user.email}</h1>
+            <p>This is live temperature data pulled from ESP's</p>
             <Line options={options} data={data} />
-            <div className="p-4 box mt-3 text-center">
-                Hello Welcome <br />
-                { user && user.email}
-                
-            </div>
-            <div className="d-grid gap-2">
-                <Button variant="primary" onClick={handleLogOut}>
-                    Log Out
-                </Button>
-            </div>
+            <br/>
+            <Button variant="primary" onClick={handleLogOut}>
+                Log Out
+            </Button>
         </>
     );
 };
