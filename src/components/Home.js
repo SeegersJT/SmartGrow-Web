@@ -29,6 +29,7 @@ ChartJS.register(
 const Home = () => {
     const [dawid, setDawid] = useState([]);
     const [hanno, setHanno] = useState([]);
+
     const { user, logOut } = useUserAuth();
 
     //read device data based on uid
@@ -67,7 +68,7 @@ const Home = () => {
     };
 
     const data = {
-        labels: [dawid.map((x) => x.timestamp)],
+        labels: dawid.map((x) => x.timestamp),
         datasets: [
             {
                 label: "Hanno - ESP",
