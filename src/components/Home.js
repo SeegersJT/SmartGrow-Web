@@ -27,8 +27,7 @@ ChartJS.register(
 );
 
 const Home = () => {
-    const [dawid, setDawid] = useState([]);
-    const [hanno, setHanno] = useState([]);
+    const [mergedArray, setMergedArray] = useState([]);
 
     const { user, logOut } = useUserAuth();
 
@@ -38,9 +37,17 @@ const Home = () => {
             onValue(ref(database, "/devices/"), snapshot => {
                 const data = snapshot.val();
                 if(data !== null) {
-                    setDawid(Object.values(data.LDlrNOnaLFcnBeGEq9zdGXTBMQj2.readings));
-                    setHanno(Object.values(data.uFBi6L0Kp0XgBLH72ewIlkOWqGG3.readings));
+                    // This will change completely when RTDB is restructured
+                    const hannoArray = Object.values(data.uFBi6L0Kp0XgBLH72ewIlkOWqGG3.readings);
+                    const dawidArray = Object.values(data.LDlrNOnaLFcnBeGEq9zdGXTBMQj2.readings);
+                    setMergedArray([...hannoArray, ...dawidArray].sort((a, b) => {
+                            if(a.timestamp < b.timestamp) { return -1; }
+                            if(a.timestamp > b.timestamp) { return 1; }
+                            return 0;
+                        }
+                    ));
                 }
+                console.log(data);
             });
         }
     }, [user]);
@@ -54,6 +61,10 @@ const Home = () => {
         }
     }
 
+   
+
+    console.log(mergedArray);
+
     const options = {
         responsive: true,
         plugins: {
@@ -64,23 +75,33 @@ const Home = () => {
             display: true,
             text: user.email
           }
-        }
+        },
     };
 
     const data = {
-        labels: dawid.map((x) => x.timestamp),
+        labels: mergedArray.map((x) => x.timestamp),
         datasets: [
             {
                 label: "Hanno - ESP",
-                data: hanno.map((x) => x.heatindex),
+                data: mergedArray.map((x) => {
+                    if(x.device === "ESP32-HANNO") { return x.heatindex; }
+                    return null;
+                }),
                 borderColor: "rgb(255, 99, 132)",
-                backgroundColor: "rgba(255, 99, 132, 0.5)"
+                backgroundColor: "rgba(255, 99, 132, 0.5)",
+                spanGaps: true,
+                tension: 0.2,
             },
             {
                 label: "Dawid - ESP",
-                data: dawid.map((x) => x.heatindex),
+                data: mergedArray.map((x) => {
+                    if(x.device === "ESP32S") { return x.heatindex; }
+                    return null;
+                }),
                 borderColor: "rgb(53, 162, 235)",
-                backgroundColor: "rgba(53, 162, 235, 0.5)"
+                backgroundColor: "rgba(53, 162, 235, 0.5)",
+                spanGaps: true,
+                tension: 0.2,
             }
         ]
     };
