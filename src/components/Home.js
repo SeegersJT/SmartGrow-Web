@@ -5,6 +5,7 @@ import { useUserAuth } from "../context/UserAuthContext";
 import { database } from "../util/firebase";
 import { onValue, ref } from "firebase/database";
 import { Line } from "react-chartjs-2";
+import EspCard from "./EspCard";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -108,13 +109,16 @@ const Home = () => {
 
     return (
         <>
+
+            <EspCard />
+{/* 
             <h1>Welcome {user.email}</h1>
             <p>This is live temperature data pulled from ESP's</p>
             <Line options={options} data={data} />
             <br/>
             <Button variant="primary" onClick={handleLogOut}>
                 Log Out
-            </Button>
+            </Button> */}
         </>
     );
 };
