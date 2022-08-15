@@ -27,7 +27,6 @@ body {
 .espCard{
     box-sizing: border-box;
 
-    position: absolute;
     width: 221px;
     height: 292px;
     
@@ -36,17 +35,23 @@ body {
     box-shadow: 2px 2px 10px rgba(5, 5, 5, 0.25);
     border-radius: 16px 16px 6px 6px;
 
+    ul{
+        margin: auto;
+    }
+
     .espName{
-        position: absolute;
         width: 174px;
         height: 34px;
+        margin: 1em;
+
+
 
         background: #D9D9D9;
         border-radius: 58px;
     }
 
     .info{
-        position: absolute;
+        margin: 1em;
         width: 154px;
         height: 26px;
 

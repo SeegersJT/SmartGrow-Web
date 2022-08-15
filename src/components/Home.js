@@ -29,6 +29,7 @@ ChartJS.register(
 
 const Home = () => {
     const [mergedArray, setMergedArray] = useState([]);
+    const [espData, setEspData] = useState([]);
 
     const { user, logOut } = useUserAuth();
 
@@ -47,11 +48,14 @@ const Home = () => {
                             return 0;
                         }
                     ));
+                    setEspData(Object.values(data))
+
                 }
                 console.log(data);
             });
         }
     }, [user]);
+
 
     const handleLogOut = async () => {
         try {
@@ -107,10 +111,23 @@ const Home = () => {
         ]
     };
 
-    return (
-        <>
+    console.log(typeof(espData))
 
-            <EspCard />
+    const currentEsp = espData.map((esp,index) => {
+        return (
+            <EspCard 
+            esp={esp.current}
+            key={index} 
+            />
+        )
+    })
+
+
+
+    return (
+
+        <>{currentEsp}
+
 {/* 
             <h1>Welcome {user.email}</h1>
             <p>This is live temperature data pulled from ESP's</p>
