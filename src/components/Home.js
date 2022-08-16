@@ -5,6 +5,7 @@ import { useUserAuth } from "../context/UserAuthContext";
 import { database } from "../util/firebase";
 import { onValue, ref } from "firebase/database";
 import { Line } from "react-chartjs-2";
+import EspCard from "./EspCard";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -28,6 +29,7 @@ ChartJS.register(
 
 const Home = () => {
     const [mergedArray, setMergedArray] = useState([]);
+    const [espData, setEspData] = useState([]);
 
     const { user, logOut } = useUserAuth();
 
@@ -46,11 +48,14 @@ const Home = () => {
                             return 0;
                         }
                     ));
+                    setEspData(Object.values(data))
+
                 }
                 console.log(data);
             });
         }
     }, [user]);
+
 
     const handleLogOut = async () => {
         try {
@@ -106,15 +111,31 @@ const Home = () => {
         ]
     };
 
+    console.log(typeof(espData))
+
+    const currentEsp = espData.map((esp,index) => {
+        return (
+            <EspCard 
+            esp={esp.current}
+            key={index} 
+            />
+        )
+    })
+
+
+
     return (
-        <>
+
+        <>{currentEsp}
+
+{/* 
             <h1>Welcome {user.email}</h1>
             <p>This is live temperature data pulled from ESP's</p>
             <Line options={options} data={data} />
             <br/>
             <Button variant="primary" onClick={handleLogOut}>
                 Log Out
-            </Button>
+            </Button> */}
         </>
     );
 };

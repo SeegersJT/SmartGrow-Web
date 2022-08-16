@@ -24,4 +24,49 @@ body {
     }
 }
 
+.espCard{
+    box-sizing: border-box;
+
+    width: 221px;
+    height: 292px;
+    
+    background: #FFFFFF;
+    mix-blend-mode: normal;
+    box-shadow: 2px 2px 10px rgba(5, 5, 5, 0.25);
+    border-radius: 16px 16px 6px 6px;
+
+    ul{
+        margin: auto;
+    }
+
+    .espName{
+        width: 174px;
+        height: 34px;
+        margin: 1em;
+
+
+
+        background: #D9D9D9;
+        border-radius: 58px;
+    }
+
+    .info{
+        margin: 1em;
+        width: 154px;
+        height: 26px;
+
+        background: #D9D9D9;
+        border-radius: 57px;
+    }
+
+    .notifyIcon{
+        position: absolute;
+        width: 11px;
+        height: 26px;
+
+        background: #D9D9D9;
+        border-radius: 57px;
+    }
+}
+
 @import "~bootstrap/scss/bootstrap";
