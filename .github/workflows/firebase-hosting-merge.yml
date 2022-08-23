@@ -32,7 +32,6 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           discord-webhook: ${{ secrets.DISCORD_WEBHOOK }}
           username: 'J.A.R.V.I.S'
-          if: ${{STATUS == "ASDASD"}}
-          title: 'Good Day Sir. ${{ github.workflow }}: {{STATUS}}'
+          title: '${{ github.workflow }}: {{STATUS}}'
           description: 'Good day Sir. Here is a status update/n${{ github.event_name }} status: {{STATUS}}!'
           include-details: 'false'
