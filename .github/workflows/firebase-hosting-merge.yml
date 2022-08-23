@@ -32,8 +32,6 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           discord-webhook: ${{ secrets.DISCORD_WEBHOOK }}
           username: 'J.A.R.V.I.S'
-          content: 'Good Day Sir. I received a Github Workflow Notification.'
           title: '${{ github.workflow }}: {{STATUS}}'
           description: '${{ github.event_name }} status: {{STATUS}}!'
-          footer: 'J.A.R.V.I.S'
           include-details: 'false'
