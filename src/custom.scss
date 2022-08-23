@@ -39,6 +39,11 @@ body {
         margin: auto;
     }
 
+    ul li::marker{
+        color: red;
+    
+    }
+
     .espName{
         width: 174px;
         height: 34px;
@@ -67,6 +72,21 @@ body {
         background: #D9D9D9;
         border-radius: 57px;
     }
+
+
+}
+
+.espBottom{
+    width: 221px;
+    height: 19px;
+
+    background: #003366;
+    border-radius: 0px 0px 16px 16px;
+}
+
+.logo{
+    max-width: 100%;
+    height: auto;
 }
 
 @import "~bootstrap/scss/bootstrap";

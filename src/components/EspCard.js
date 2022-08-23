@@ -2,18 +2,19 @@ import React from 'react'
 
 const EspCard = ({esp}) => {
   return (
+    
     <div className='espCard'>
         <div className='espName'>
             <span >Dawid esp</span>
             <ul>
             <li className='info'>
-               temperature:{esp.Temp} 
+               temperature: 
             </li>
             <li className='info'>
-                Humid:{esp.Humid}
+                Humid:
             </li>
             <li className='info'>
-              Time: {esp.Time}
+              Time: 
             </li>
             <li className='info'>
               Test: 25
@@ -22,12 +23,12 @@ const EspCard = ({esp}) => {
               Test: 25
             </li>
           </ul>
+
         </div>
-
-           
-        
-
     </div>
+
+
+    
   )
 }
 export default EspCard

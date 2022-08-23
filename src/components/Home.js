@@ -6,6 +6,7 @@ import { database } from "../util/firebase";
 import { onValue, ref } from "firebase/database";
 import { Line } from "react-chartjs-2";
 import EspCard from "./EspCard";
+import Header from "./Header";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -41,14 +42,14 @@ const Home = () => {
                 if(data !== null) {
                     // This will change completely when RTDB is restructured
                     const hannoArray = Object.values(data.uFBi6L0Kp0XgBLH72ewIlkOWqGG3.readings);
-                    const dawidArray = Object.values(data.LDlrNOnaLFcnBeGEq9zdGXTBMQj2.readings);
+                    const dawidArray = Object.values(data.users.LDlrNOnaLFcnBeGEq9zdGXTBMQj2.readings);
                     setMergedArray([...hannoArray, ...dawidArray].sort((a, b) => {
                             if(a.timestamp < b.timestamp) { return -1; }
                             if(a.timestamp > b.timestamp) { return 1; }
                             return 0;
                         }
                     ));
-                    setEspData(Object.values(data))
+                    setEspData(Object.values(data.users.LDlrNOnaLFcnBeGEq9zdGXTBMQj2.devices.MAC.readings.current))
 
                 }
                 console.log(data);
@@ -56,6 +57,7 @@ const Home = () => {
         }
     }, [user]);
 
+    console.log(espData)
 
     const handleLogOut = async () => {
         try {
@@ -126,7 +128,10 @@ const Home = () => {
 
     return (
 
-        <>{currentEsp}
+        <>
+        <Header />
+        <EspCard />
+        {currentEsp}
 
 {/* 
             <h1>Welcome {user.email}</h1>
