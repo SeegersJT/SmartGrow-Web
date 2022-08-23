@@ -33,5 +33,5 @@ jobs:
           discord-webhook: ${{ secrets.DISCORD_WEBHOOK }}
           username: 'J.A.R.V.I.S'
           title: '${{ github.workflow }}: {{STATUS}}'
-          description: 'Good day Sir. Here is a status update/n${{ github.event_name }} status: {{STATUS}}!'
+          description: 'Good day Sir. I have a WorkFlow update for you.\n${{ github.event_name }} status: {{STATUS}}!'
           include-details: 'false'
