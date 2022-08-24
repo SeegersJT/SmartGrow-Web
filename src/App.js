@@ -8,29 +8,25 @@ import { UserAuthContextProvider } from "./context/UserAuthContext";
 
 function App() {
     return (
-        <Container style={{ width: "1000px" }}>
-            <Row>
-                <Col>
-                    <UserAuthContextProvider>
-                        <Routes>
-                            <Route
-                                path="/home"
-                                element={
-                                <ProtectedRoute>
-                                    <Home />
-                                </ProtectedRoute>
-                                }
-                            />
-                            <Route path="/" element={<Login />} />
-                            <Route
-                                path="/redirect"
-                                element={ <Navigate to="/" /> }
-                            />
-                        </Routes>
-                    </UserAuthContextProvider>
-                </Col>
-            </Row>
-        </Container>
+        <>
+            <UserAuthContextProvider>
+                <Routes>
+                    <Route
+                        path="/home"
+                        element={
+                        <ProtectedRoute>
+                            <Home />
+                        </ProtectedRoute>
+                        }
+                    />
+                    <Route path="/" element={<Login />} />
+                    <Route
+                        path="/redirect"
+                        element={ <Navigate to="/" /> }
+                    />
+                </Routes>
+            </UserAuthContextProvider>
+        </>
     );
 }
 
