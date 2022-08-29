@@ -7,6 +7,8 @@ import { onValue, ref } from "firebase/database";
 import { Line } from "react-chartjs-2";
 import EspCard from "./EspCard";
 import Header from "./Header";
+import { navigations } from '../navigations';
+import MatxVerticalNav from './MatxVerticalNav/MatxVerticalNav';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -129,7 +131,7 @@ const Home = () => {
     return (
 
         <>
-        <Header />
+        <MatxVerticalNav items={navigations}/>
         <br/>
          <EspCard />
         {currentEsp}
